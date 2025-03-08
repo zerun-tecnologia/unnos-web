@@ -1,0 +1,19 @@
+services:
+  postgres:
+    container_name: unnos-pg
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: /data/postgres
+    volumes:
+      - unnos-pg:/data/postgres
+
+volumes:
+  unnos-pg:
+    external: false
+  minio_data:
+    driver: local
